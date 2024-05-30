@@ -30,7 +30,8 @@ int main(void)
 	Model* snakeHead = new Model(mySnakeVertices, mySnakeTexCoords, nullptr, mySnakeVertexCount);
 
 	snakeHead->readTextureFromPng("./bricks.png");
-	snakeHead->scale(vec3(0.1f, 0.1f, 1.0f));
+	snakeHead->translate(vec3(0, 0, -1.5f));
+	snakeHead->scale(vec3(0.1f, 0.1f, 0.05f));
 	game->addModel(snakeHead);
 
 	floor->readTextureFromPng("./grass.png");

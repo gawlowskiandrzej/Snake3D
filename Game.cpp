@@ -17,6 +17,20 @@ void Game::windowResizeCallback(GLFWwindow* window, int width, int height)
 
 void Game::error_callback(int error, const char* description){ fputs(description, stderr); }
 
+void Game::mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT))
+	{
+		double offsetx = xpos - Camera::lastCameraPosx;
+		double offsety = ypos - Camera::lastCameraPosy;
+
+		Camera::angle_x += (float)(offsety * -0.003);
+		Camera::angle_y += (float)(offsetx * 0.003);
+	}
+	Camera::lastCameraPosx = xpos;
+	Camera::lastCameraPosy = ypos;
+}
+
 void Game::renderLambertObjects()
 {
 	this->lambert->use();
@@ -42,6 +56,7 @@ void Game::init()
 	glEnable(GL_DEPTH_TEST);
 	glfwSetWindowSizeCallback(this->window, this->windowResizeCallback);
 	glfwSetKeyCallback(this->window, keyCallback);
+	glfwSetCursorPosCallback(window, Game::mouse_callback);
 
 	// Define base shaders
 	this->lambert = new ShaderProgram("v_simplest.glsl", NULL, "f_simplest.glsl");
@@ -116,6 +131,8 @@ void Game::drawScene()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	this->camera->updateCameraPos(0);
+
 	renderLambertObjects();
 
 	glfwSwapBuffers(this->window);
@@ -125,11 +142,19 @@ void Game::updateInput()
 {
 	glfwPollEvents();
 
-	if (glfwGetKey(this->window, GLFW_KEY_W) == GLFW_PRESS) this->gameModels[0]->translate(vec3(0,1.0f,0));
+	if (glfwGetKey(this->window, GLFW_KEY_W) == GLFW_PRESS) this->gameModels[0]->translate(vec3(0, 1.0f, 0));
 	else if (glfwGetKey(this->window, GLFW_KEY_S) == GLFW_PRESS) this->gameModels[0]->translate(vec3(0, -1.0f, 0));
-	else if (glfwGetKey(this->window, GLFW_KEY_A) == GLFW_PRESS) this->gameModels[0]->translate(vec3(-1.0f, 0, 0));
-	else if (glfwGetKey(this->window, GLFW_KEY_D) == GLFW_PRESS) this->gameModels[0]->translate(vec3(1.0f, 0, 0));
+	else if (glfwGetKey(this->window, GLFW_KEY_A) == GLFW_PRESS) this->gameModels[0]->translate(vec3(1.0f, 0, 0));
+	else if (glfwGetKey(this->window, GLFW_KEY_D) == GLFW_PRESS) this->gameModels[0]->translate(vec3(-1.0f, 0, 0));
 	else if (glfwGetKey(this->window, GLFW_KEY_ESCAPE) == GLFW_PRESS) glfwSetWindowShouldClose(this->window, GL_TRUE);
+
+
+	else if (glfwGetKey(this->window, GLFW_KEY_UP) == GLFW_PRESS) this->camera->cameraSpeed = CAMERA_SPEED;
+	else if (glfwGetKey(this->window, GLFW_KEY_DOWN) == GLFW_PRESS) this->camera->cameraSpeed = -CAMERA_SPEED;
+	else if (glfwGetKey(this->window, GLFW_KEY_RIGHT) == GLFW_PRESS) this->camera->speed_x = CAMERA_SPEED;
+	else if (glfwGetKey(this->window, GLFW_KEY_LEFT) == GLFW_PRESS) this->camera->speed_x = -CAMERA_SPEED;
+
+	else { this->camera->cameraSpeed = 0; this->camera->speed_x = 0; }
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(10));
 }

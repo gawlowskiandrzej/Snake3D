@@ -27,6 +27,7 @@ class Game {
 		static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 		static void windowResizeCallback(GLFWwindow* window, int width, int height);
 		static void error_callback(int error, const char* description);
+		static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
 		void renderLambertObjects();
 
