@@ -37,7 +37,7 @@ int main(void)
 	floor->scale(vec3(3.3f, 3.3f, 1.0f));
 	game->addModel(floor);
 
-	Snake* snakeBody = new Snake(snakeHead, 1);
+	Snake* snakeBody = new Snake(snakeHead, 5);
 	game->addSnake(snakeBody);
 
 	printf("Resources loaded... starting app loop.");

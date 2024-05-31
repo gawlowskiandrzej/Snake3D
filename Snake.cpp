@@ -35,8 +35,9 @@ void Snake::move(int index)
         this->snakeFragments.at(index)->rotate(this->angle,vec3(0.0f, 0.0f, 1.0f));
         return;
     }
+
     this->snakeFragments.at(index)->setModelMatrix(this->snakeFragments.at(index - 1)->getModelMatrix());
-    this->snakeFragments.at(index)->translate(vec3(0.0f, this->fragmentDistance, 0.0f));
+    //this->snakeFragments.at(index)->translate(vec3(0.0f, this->fragmentDistance, 0.0f));
     this->move(index - 1);
 }
 

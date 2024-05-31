@@ -6,7 +6,7 @@ class Snake {
 	private:
 
 		int length;
-		float fragmentDistance = -1.0f;
+		float fragmentDistance = 2.0f;
 
 		bool isCollided();
 
@@ -15,7 +15,7 @@ class Snake {
 		Snake(Model* snakeHead, int baseLength);
 
 		float angle;
-		float speed = 0.8f;
+		float speed = 1.0f;
 		std::vector<Model*> snakeFragments;
 
 		void extendSnake(int amount);
