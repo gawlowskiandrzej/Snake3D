@@ -26,6 +26,6 @@ Place, Fifth Floor, Boston, MA  02110 - 1301  USA
 #define FOV 90.0f
 #define ASPECT_RATIO 1.0f
 #define MOVEMENT_SPEED 2.50f
-#define SENSITIVITY 10.0f
+#define SENSITIVITY 0.003f
 #define CAMERA_SPEED 0.1f
 #endif

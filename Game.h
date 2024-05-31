@@ -42,8 +42,6 @@ class Game {
 
 		Game();
 		
-		// Getters and setters
-		// 
 		// Window
 		GLFWwindow* getWindow();
 

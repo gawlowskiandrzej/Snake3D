@@ -16,6 +16,7 @@
 #include "shaderprogram.h"
 #include <thread>
 #include <chrono>
+#include <vector>
 
 using namespace glm;
 

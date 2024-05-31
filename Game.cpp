@@ -24,8 +24,8 @@ void Game::mouse_callback(GLFWwindow* window, double xpos, double ypos)
 		double offsetx = xpos - Camera::lastCameraPosx;
 		double offsety = ypos - Camera::lastCameraPosy;
 
-		Camera::angle_x += (float)(offsety * -0.003);
-		Camera::angle_y += (float)(offsetx * 0.003);
+		Camera::angle_x += (float)(offsety * -SENSITIVITY);
+		Camera::angle_y += (float)(offsetx * SENSITIVITY);
 	}
 	Camera::lastCameraPosx = xpos;
 	Camera::lastCameraPosy = ypos;
@@ -46,6 +46,8 @@ void Game::renderLambertObjects()
 
 		glDrawArrays(GL_TRIANGLES, 0, model->vertexCount);
 	}
+
+	this->snake->renderSnakeBody(this->lambert);
 
 	this->disableAttribArrays(this->lambert);
 }
@@ -122,10 +124,7 @@ void Game::addModel(Model* model) { gameModels.push_back(model); }
 
 int Game::gameModelsCount() { return gameModels.size(); }
 
-void Game::addSnake(Snake* snake)
-{
-
-}
+void Game::addSnake(Snake* snake) { this->snake = snake; }
 
 void Game::drawScene()
 {
@@ -144,8 +143,8 @@ void Game::updateInput()
 
 	if (glfwGetKey(this->window, GLFW_KEY_W) == GLFW_PRESS) this->gameModels[0]->translate(vec3(0, 1.0f, 0));
 	else if (glfwGetKey(this->window, GLFW_KEY_S) == GLFW_PRESS) this->gameModels[0]->translate(vec3(0, -1.0f, 0));
-	else if (glfwGetKey(this->window, GLFW_KEY_A) == GLFW_PRESS) this->gameModels[0]->translate(vec3(1.0f, 0, 0));
-	else if (glfwGetKey(this->window, GLFW_KEY_D) == GLFW_PRESS) this->gameModels[0]->translate(vec3(-1.0f, 0, 0));
+	else if (glfwGetKey(this->window, GLFW_KEY_A) == GLFW_PRESS) { this->snake->angle = -22.0f;  this->snake->move(this->snake->getLength() - 1); }
+	else if (glfwGetKey(this->window, GLFW_KEY_D) == GLFW_PRESS) { this->snake->angle = 22.0f; this->snake->move(this->snake->getLength() - 1); }
 	else if (glfwGetKey(this->window, GLFW_KEY_ESCAPE) == GLFW_PRESS) glfwSetWindowShouldClose(this->window, GL_TRUE);
 
 
