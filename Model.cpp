@@ -9,6 +9,12 @@ Model::Model(float* vertexPosition, float* vertexTexCoord, float* vertexNormal, 
     this->vertexCount = vertexCount;
 }
 
+Model::Model(const char* filePath, const char* texturePath)
+{
+    this->readObj(filePath);
+    this->readTextureFromPng(texturePath);
+}
+
 void Model::setModelMatrix(mat4 modelMatrix) { this->modelMatrix = modelMatrix; }
 
 mat4 Model::getModelMatrix() { return this->modelMatrix; }
@@ -39,6 +45,18 @@ void Model::readTextureFromPng(const char* filePath)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+    glTexParameteri(GL_TEXTURE_2D,
+        GL_TEXTURE_WRAP_S,
+        GL_MIRRORED_REPEAT);
+
+    glTexParameteri(GL_TEXTURE_2D,
+        GL_TEXTURE_WRAP_T,
+        GL_MIRRORED_REPEAT);
+}
+
+void Model::readObj(const char* filePath)
+{
+    this->objModel.loadOBJ(filePath);
 }
 
 void Model::sendToShader(ShaderProgram* sp)
@@ -46,9 +64,9 @@ void Model::sendToShader(ShaderProgram* sp)
     glUniformMatrix4fv(sp->u("M"), 1, false, glm::value_ptr(this->modelMatrix));
 
     // Send object to GPU
-    glVertexAttribPointer(sp->a("vertex"), 4, GL_FLOAT, false, 0, this->vertexPosition);
-    glVertexAttribPointer(sp->a("texCoord"), 2, GL_FLOAT, false, 0, this->vertexTexCoord);
-    //glVertexAttribPointer(sp->a("normal"), 4, GL_FLOAT, false, 0, this->vertexNormal);
+    glVertexAttribPointer(sp->a("vertex"), 4, GL_FLOAT, false, 0, this->getPosition());
+    glVertexAttribPointer(sp->a("texCoord"), 2, GL_FLOAT, false, 0, this->getTexCoords());
+    //glVertexAttribPointer(sp->a("normal"), 4, GL_FLOAT, false, 0, this->get);
 }
 
 void Model::activeTexture(ShaderProgram* sp)
@@ -57,3 +75,10 @@ void Model::activeTexture(ShaderProgram* sp)
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, *this->texture);
 }
+
+float* Model::getPosition() { return (this->vertexPosition ? this->vertexPosition : this->objModel.verticies); }
+
+float* Model::getTexCoords() { return (this->vertexTexCoord ? this->vertexTexCoord : this->objModel.textCoord); }
+
+int Model::getCount() { return (this->vertexCount != 0 ? this->vertexCount : this->objModel.result.size()); }
+

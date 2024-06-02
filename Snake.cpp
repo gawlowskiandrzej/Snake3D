@@ -10,7 +10,7 @@ Snake::Snake(Model* snakeHead, int baseLength)
 {
     this->length = 1;
     this->snakeFragments.push_back(snakeHead);
-    this->extendSnake(1);
+    this->extendSnake(baseLength);
 }
 
 void Snake::extendSnake(int amount)

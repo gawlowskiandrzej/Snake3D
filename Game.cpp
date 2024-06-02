@@ -44,7 +44,7 @@ void Game::renderLambertObjects()
 		model->sendToShader(this->lambert);
 		model->activeTexture(this->lambert);
 
-		glDrawArrays(GL_TRIANGLES, 0, model->vertexCount);
+		glDrawArrays(GL_TRIANGLES, 0, model->getCount());
 	}
 
 	this->snake->renderSnakeBody(this->lambert);
@@ -148,10 +148,10 @@ void Game::updateInput()
 	else if (glfwGetKey(this->window, GLFW_KEY_ESCAPE) == GLFW_PRESS) glfwSetWindowShouldClose(this->window, GL_TRUE);
 
 
-	else if (glfwGetKey(this->window, GLFW_KEY_UP) == GLFW_PRESS) this->camera->cameraSpeed = CAMERA_SPEED;
-	else if (glfwGetKey(this->window, GLFW_KEY_DOWN) == GLFW_PRESS) this->camera->cameraSpeed = -CAMERA_SPEED;
-	else if (glfwGetKey(this->window, GLFW_KEY_RIGHT) == GLFW_PRESS) this->camera->speed_x = CAMERA_SPEED;
-	else if (glfwGetKey(this->window, GLFW_KEY_LEFT) == GLFW_PRESS) this->camera->speed_x = -CAMERA_SPEED;
+	 if (glfwGetKey(this->window, GLFW_KEY_UP) == GLFW_PRESS) this->camera->cameraSpeed = CAMERA_SPEED;
+	 if (glfwGetKey(this->window, GLFW_KEY_DOWN) == GLFW_PRESS) this->camera->cameraSpeed = -CAMERA_SPEED;
+	 if (glfwGetKey(this->window, GLFW_KEY_RIGHT) == GLFW_PRESS) this->camera->speed_x = CAMERA_SPEED;
+	 if (glfwGetKey(this->window, GLFW_KEY_LEFT) == GLFW_PRESS) this->camera->speed_x = -CAMERA_SPEED;
 
 	else { this->camera->cameraSpeed = 0; this->camera->speed_x = 0; }
 

@@ -1,8 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "Camera.h"
 #include "Model.h"
+#include "Camera.h"
 #include "Snake.h"
 
 class Game {

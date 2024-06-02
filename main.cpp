@@ -27,17 +27,16 @@ int main(void)
 
 	Model* floor = new Model(myFloorVertices, myFloorTexCoords, nullptr,myFloorVertexCount);
 
-	Model* snakeHead = new Model(mySnakeVertices, mySnakeTexCoords, nullptr, mySnakeVertexCount);
+	Model* snakeHead = new Model("./objFiles/snakeHead.obj", "./textures/snakeSkin.png");
 
-	snakeHead->readTextureFromPng("./bricks.png");
-	snakeHead->translate(vec3(0, 0, -1.3f));
-	snakeHead->scale(vec3(0.1f, 0.1f, 0.05f));
+	//snakeHead->translate(vec3(0, 0, 0));
+	snakeHead->scale(vec3(6.0f, 6.0f, 6.0f));
 
-	floor->readTextureFromPng("./grass.png");
+	floor->readTextureFromPng("./textures/grass.png");
 	floor->scale(vec3(3.3f, 3.3f, 1.0f));
 	game->addModel(floor);
 
-	Snake* snakeBody = new Snake(snakeHead, 5);
+	Snake* snakeBody = new Snake(snakeHead, 1);
 	game->addSnake(snakeBody);
 
 	printf("Resources loaded... starting app loop.");
