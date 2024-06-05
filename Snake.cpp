@@ -6,10 +6,12 @@ bool Snake::isCollided()
     return false;
 }
 
-Snake::Snake(Model* snakeHead, int baseLength)
+Snake::Snake(Model* snakeHead, Model* snakeBody , int baseLength)
 {
     this->length = 1;
     this->snakeFragments.push_back(snakeHead);
+    this->snakeFragments.push_back(snakeBody);
+    this->length++;
     this->extendSnake(baseLength);
 }
 
@@ -17,7 +19,8 @@ void Snake::extendSnake(int amount)
 {
     for (int i = 0; i < amount; i++)
     {
-        this->snakeFragments.push_back(new Model(*this->snakeFragments.at(this->length - 1)));
+        Model* snakeFrag = new Model(*this->snakeFragments.at(this->length - 1));
+        this->snakeFragments.push_back(snakeFrag);
         this->length++;
     }
 }
@@ -31,13 +34,12 @@ void Snake::move(int index)
     }
     if (index == 0)
     {
-        this->snakeFragments.at(index)->translate(vec3(0.0f, this->speed, 0.0f));
-        this->snakeFragments.at(index)->rotate(this->angle,vec3(0.0f, 0.0f, 1.0f));
+        this->snakeFragments.at(index)->translate(vec3(0, 0, this->speed));
+        this->snakeFragments.at(index)->rotate(this->angle,vec3(0.0f, 1.0f, 0.0f));
         return;
     }
 
     this->snakeFragments.at(index)->setModelMatrix(this->snakeFragments.at(index - 1)->getModelMatrix());
-    //this->snakeFragments.at(index)->translate(vec3(0.0f, this->fragmentDistance, 0.0f));
     this->move(index - 1);
 }
 
@@ -50,6 +52,7 @@ void Snake::renderSnakeBody(ShaderProgram* sp)
         snakeBody->sendToShader(sp);
         snakeBody->activeTexture(sp);
         
-        glDrawArrays(GL_TRIANGLES, 0, snakeBody->getCount());
+        glDrawArrays(GL_TRIANGLE_FAN, 0, snakeBody->getCount());
     }
+
 }

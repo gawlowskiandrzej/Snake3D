@@ -20,6 +20,7 @@ class Game {
 		Snake* snake;
 		// Camera object
 		Camera* camera;
+		
 		// Base shaders
 		ShaderProgram* lambert;
 
@@ -41,7 +42,6 @@ class Game {
 		
 
 		Game();
-		
 		// Window
 		GLFWwindow* getWindow();
 

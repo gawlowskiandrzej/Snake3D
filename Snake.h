@@ -12,10 +12,10 @@ class Snake {
 
 	public:
 
-		Snake(Model* snakeHead, int baseLength);
+		Snake(Model* snakeHead, Model* snakeBody, int baseLength);
 
 		float angle;
-		float speed = 0.05f;
+		float speed = 0.1f;
 		std::vector<Model*> snakeFragments;
 
 		void extendSnake(int amount);

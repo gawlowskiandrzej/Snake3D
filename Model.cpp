@@ -9,9 +9,9 @@ Model::Model(float* vertexPosition, float* vertexTexCoord, float* vertexNormal, 
     this->vertexCount = vertexCount;
 }
 
-Model::Model(const char* filePath, const char* texturePath)
+Model::Model(const char* filePath, const char* texturePath, float scale, float translate)
 {
-    this->readObj(filePath);
+    this->readObj(filePath, scale, translate);
     this->readTextureFromPng(texturePath);
 }
 
@@ -54,9 +54,9 @@ void Model::readTextureFromPng(const char* filePath)
         GL_MIRRORED_REPEAT);
 }
 
-void Model::readObj(const char* filePath)
+void Model::readObj(const char* filePath, float scale, float translatee)
 {
-    this->objModel.loadOBJ(filePath);
+    this->objModel.loadOBJ(filePath, scale, translatee);
 }
 
 void Model::sendToShader(ShaderProgram* sp)

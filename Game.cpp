@@ -134,6 +134,7 @@ void Game::drawScene()
 
 	renderLambertObjects();
 
+
 	glfwSwapBuffers(this->window);
 }
 

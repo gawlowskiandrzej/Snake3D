@@ -19,7 +19,7 @@ class Model {
 		int vertexCount = 0;
 
 		Model(float* vertexPosition, float* vertexTexCoord, float* vertexNormal, unsigned int vertexCount);
-		Model(const char* filePath, const char* texturePath);
+		Model(const char* filePath, const char* texturePath, float scale = 1, float translate = 0);
 		void setModelMatrix(mat4 modelMatrix);
 		mat4 getModelMatrix();
 
@@ -28,7 +28,7 @@ class Model {
 		void translate(vec3 translate);
 
 		void readTextureFromPng(const char* filePath);
-		void readObj(const char* filePath);
+		void readObj(const char* filePath, float scale, float translatee);
 
 		void sendToShader(ShaderProgram* sp);
 		void activeTexture(ShaderProgram* sp);
