@@ -64,7 +64,7 @@ void Model::sendToShader(ShaderProgram* sp)
     glUniformMatrix4fv(sp->u("M"), 1, false, glm::value_ptr(this->modelMatrix));
 
     // Send object to GPU
-    glVertexAttribPointer(sp->a("vertex"), 4, GL_FLOAT, false, 0, this->getPosition());
+    glVertexAttribPointer(sp->a("vertex"),4, GL_FLOAT, false, 0, this->getPosition());
     glVertexAttribPointer(sp->a("texCoord"), 2, GL_FLOAT, false, 0, this->getTexCoords());
     //glVertexAttribPointer(sp->a("normal"), 4, GL_FLOAT, false, 0, this->get);
 }
@@ -80,5 +80,5 @@ float* Model::getPosition() { return (this->vertexPosition ? this->vertexPositio
 
 float* Model::getTexCoords() { return (this->vertexTexCoord ? this->vertexTexCoord : this->objModel.textCoord); }
 
-int Model::getCount() { return (this->vertexCount != 0 ? this->vertexCount : this->objModel.result.size()); }
+int Model::getCount() { return (this->vertexCount != 0 ? this->vertexCount : this->objModel.vertex_position.size()); }
 

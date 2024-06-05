@@ -49,6 +49,7 @@ void Snake::renderSnakeBody(ShaderProgram* sp)
     {
         snakeBody->sendToShader(sp);
         snakeBody->activeTexture(sp);
-        glDrawArrays(GL_TRIANGLES, 0, snakeBody->vertexCount);
+        
+        glDrawArrays(GL_TRIANGLES, 0, snakeBody->getCount());
     }
 }

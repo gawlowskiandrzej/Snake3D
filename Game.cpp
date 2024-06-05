@@ -143,15 +143,15 @@ void Game::updateInput()
 
 	if (glfwGetKey(this->window, GLFW_KEY_W) == GLFW_PRESS) this->gameModels[0]->translate(vec3(0, 1.0f, 0));
 	else if (glfwGetKey(this->window, GLFW_KEY_S) == GLFW_PRESS) this->gameModels[0]->translate(vec3(0, -1.0f, 0));
-	else if (glfwGetKey(this->window, GLFW_KEY_A) == GLFW_PRESS) { this->snake->angle = -22.0f;  this->snake->move(this->snake->getLength() - 1); }
-	else if (glfwGetKey(this->window, GLFW_KEY_D) == GLFW_PRESS) { this->snake->angle = 22.0f; this->snake->move(this->snake->getLength() - 1); }
+	else if (glfwGetKey(this->window, GLFW_KEY_A) == GLFW_PRESS) { this->snake->angle = -12.0f;  this->snake->move(this->snake->getLength() - 1); }
+	else if (glfwGetKey(this->window, GLFW_KEY_D) == GLFW_PRESS) { this->snake->angle = 12.0f; this->snake->move(this->snake->getLength() - 1); }
 	else if (glfwGetKey(this->window, GLFW_KEY_ESCAPE) == GLFW_PRESS) glfwSetWindowShouldClose(this->window, GL_TRUE);
 
 
 	 if (glfwGetKey(this->window, GLFW_KEY_UP) == GLFW_PRESS) this->camera->cameraSpeed = CAMERA_SPEED;
-	 if (glfwGetKey(this->window, GLFW_KEY_DOWN) == GLFW_PRESS) this->camera->cameraSpeed = -CAMERA_SPEED;
-	 if (glfwGetKey(this->window, GLFW_KEY_RIGHT) == GLFW_PRESS) this->camera->speed_x = CAMERA_SPEED;
-	 if (glfwGetKey(this->window, GLFW_KEY_LEFT) == GLFW_PRESS) this->camera->speed_x = -CAMERA_SPEED;
+	 else if (glfwGetKey(this->window, GLFW_KEY_DOWN) == GLFW_PRESS) this->camera->cameraSpeed = -CAMERA_SPEED;
+	 else if (glfwGetKey(this->window, GLFW_KEY_RIGHT) == GLFW_PRESS) this->camera->speed_x = CAMERA_SPEED;
+	 else if (glfwGetKey(this->window, GLFW_KEY_LEFT) == GLFW_PRESS) this->camera->speed_x = -CAMERA_SPEED;
 
 	else { this->camera->cameraSpeed = 0; this->camera->speed_x = 0; }
 

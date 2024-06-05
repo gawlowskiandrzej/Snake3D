@@ -15,7 +15,7 @@ class Snake {
 		Snake(Model* snakeHead, int baseLength);
 
 		float angle;
-		float speed = 1.0f;
+		float speed = 0.05f;
 		std::vector<Model*> snakeFragments;
 
 		void extendSnake(int amount);
