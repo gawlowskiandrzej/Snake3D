@@ -1,26 +1,18 @@
-#ifndef MYCUBE_H
-#define MYCUBE_H
+#ifndef MYWALL_H
+#define MYWALL_H
 
-int mySnakeVertexCount = 36;
+int myWallVertexCount = 24;
 
-float mySnakeVertices[] = {
-	//Œciana 1
-	1.0f,-1.0f,-1.0f,1.0f,
-	-1.0f, 1.0f,-1.0f,1.0f,
-	-1.0f,-1.0f,-1.0f,1.0f,
-
-	1.0f,-1.0f,-1.0f,1.0f,
-	1.0f, 1.0f,-1.0f,1.0f,
-	-1.0f, 1.0f,-1.0f,1.0f,
+float myWallVertices[] = {
 
 	//Œciana 2
-	-1.0f,-1.0f, 1.0f,1.0f,
+	/*-1.0f,-1.0f, 1.0f,1.0f,
 	1.0f, 1.0f, 1.0f,1.0f,
 	1.0f,-1.0f, 1.0f,1.0f,
 
 	-1.0f,-1.0f, 1.0f,1.0f,
 	-1.0f, 1.0f, 1.0f,1.0f,
-	1.0f, 1.0f, 1.0f,1.0f,
+	1.0f, 1.0f, 1.0f,1.0f,*/
 
 
 	//Œciana 3
@@ -64,13 +56,11 @@ float mySnakeVertices[] = {
 
 };
 
-float mySnakeTexCoords[] = {
+float myWallTexCoords[] = {
 	//Œciana 1
-	1.0f,1.0f, 0.0f,0.0f, 0.0f,1.0f,
-	1.0f,1.0f, 1.0f,0.0f, 0.0f,0.0f,
 
-	1.0f,1.0f, 0.0f,0.0f, 0.0f,1.0f,
-	1.0f,1.0f, 1.0f,0.0f, 0.0f,0.0f,
+	/*1.0f,1.0f, 0.0f,0.0f, 0.0f,1.0f,
+	1.0f,1.0f, 1.0f,0.0f, 0.0f,0.0f,*/
 
 	1.0f,1.0f, 0.0f,0.0f, 0.0f,1.0f,
 	1.0f,1.0f, 1.0f,0.0f, 0.0f,0.0f,
@@ -85,5 +75,5 @@ float mySnakeTexCoords[] = {
 	1.0f,1.0f, 1.0f,0.0f, 0.0f,0.0f,
 };
 
-#endif // !MYCUBE_H
+#endif
 

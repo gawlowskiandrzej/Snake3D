@@ -68,7 +68,7 @@
     <ClInclude Include="MyFloor.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="MyCube.h">
+    <ClInclude Include="myWall.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="objloader.h">
