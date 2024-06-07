@@ -32,7 +32,7 @@ int main(void)
 
 	Model* snakeHead = new Model("./objFiles/Sun.obj", "./textures/snakeHead.png", 0.08);
 
-	snakeHead->translate(vec3(0, 0, -1.3));
+	snakeHead->translate(vec3(0.4, 0.4, -1.3));
 	snakeHead->rotate(90, vec3(1, 0, 0));
 	snakeHead->scale(vec3(1.2, 1.2, 1.2));
 
@@ -53,14 +53,12 @@ int main(void)
 	apple->rotate(-90, vec3(1, 0, 0));
 	apple->translate(vec3(0.2, 0.2, -2.3));
 	
-	
-	
 
 	game->addModel(floor);
 	game->addModel(fence);
 	game->addModel(apple);
 
-	Snake* snakeBody = new Snake(snakeHead,snakeBodyFrag, 5);
+	Snake* snakeBody = new Snake(snakeHead,snakeBodyFrag, 28);
 	game->addSnake(snakeBody);
 
 	printf("Resources loaded... starting app loop.");

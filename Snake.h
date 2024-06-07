@@ -6,7 +6,8 @@ class Snake {
 	private:
 
 		int length;
-		float fragmentDistance = 2.0f;
+		int baseLength = 1;
+		//float fragmentDistance = 2.0f;
 
 		bool isCollided();
 
