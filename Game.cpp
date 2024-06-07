@@ -122,6 +122,19 @@ Model* Game::getModel(int pos) { return gameModels.at(pos); }
 
 void Game::addModel(Model* model) { gameModels.push_back(model); }
 
+void Game::applyAnimation()
+{
+	mat4 appleModelMat = apple->getModelMatrix();
+	//printf("apple pos z: %.2f\n", appleModelMat[3][2]);
+	if (appleModelMat[3][2] < -1.5f || appleModelMat[3][2] > -1.1f)
+	{
+		animationSpeed *= -1;
+	}
+	appleModelMat[3][2] += animationSpeed;
+	apple->setModelMatrix(appleModelMat);
+	this->apple->rotate(rotationSpeed, vec3(0, 1, 0));
+}
+
 int Game::gameModelsCount() { return gameModels.size(); }
 
 void Game::addSnake(Snake* snake) { this->snake = snake; }
@@ -134,6 +147,7 @@ void Game::drawScene()
 
 	renderLambertObjects();
 
+	applyAnimation();
 
 	glfwSwapBuffers(this->window);
 }
@@ -142,10 +156,8 @@ void Game::updateInput()
 {
 	glfwPollEvents();
 
-	if (glfwGetKey(this->window, GLFW_KEY_W) == GLFW_PRESS) this->gameModels[0]->translate(vec3(0, 1.0f, 0));
-	else if (glfwGetKey(this->window, GLFW_KEY_S) == GLFW_PRESS) this->gameModels[0]->translate(vec3(0, -1.0f, 0));
-	else if (glfwGetKey(this->window, GLFW_KEY_A) == GLFW_PRESS) { this->snake->angle = -12.0f;  this->snake->move(this->snake->getLength() - 1); }
-	else if (glfwGetKey(this->window, GLFW_KEY_D) == GLFW_PRESS) { this->snake->angle = 12.0f; this->snake->move(this->snake->getLength() - 1); }
+	if (glfwGetKey(this->window, GLFW_KEY_A) == GLFW_PRESS) { if (this->snake->angle > 0) { this->snake->angle *= -1; }  this->snake->move(this->snake->getLength() - 1, this->apple); }
+	else if (glfwGetKey(this->window, GLFW_KEY_D) == GLFW_PRESS) { if (this->snake->angle < 0) { this->snake->angle *= -1; } this->snake->move(this->snake->getLength() - 1, this->apple); }
 	else if (glfwGetKey(this->window, GLFW_KEY_ESCAPE) == GLFW_PRESS) glfwSetWindowShouldClose(this->window, GL_TRUE);
 
 

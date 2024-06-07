@@ -25,7 +25,7 @@ public:
 
     std::vector<Vertex> result;
 
-    void loadOBJ(const char* filename, float scale, float translate);
+    void loadOBJ(const char* filename, float scale, float translate, float translate2);
 
     void getPositions();
     void getNormals();

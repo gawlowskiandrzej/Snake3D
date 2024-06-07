@@ -18,11 +18,16 @@ class Game {
 		std::vector<Model*> gameModels;
 		// Snake object
 		Snake* snake;
+		
 		// Camera object
 		Camera* camera;
 		
 		// Base shaders
 		ShaderProgram* lambert;
+
+		//aniamtion
+		float animationSpeed = -0.01f;
+		float rotationSpeed = 2.0f;
 
 		// Basic callbacks
 		static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -40,6 +45,8 @@ class Game {
 
 	public:
 		
+		// AppleModel
+		Model* apple;
 
 		Game();
 		// Window
@@ -48,11 +55,13 @@ class Game {
 		// Model
 		Model* getModel(int pos);
 		void addModel(Model* model);
+		void applyAnimation();
 
 		int gameModelsCount();
 
 		//Snake
 		void addSnake(Snake* snake);
+
 
 		//OpenGL
 		void drawScene();

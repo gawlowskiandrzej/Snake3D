@@ -1,6 +1,6 @@
 #include "objloader.h"
 
-void OBJModel::loadOBJ(const char* path, float scale, float translate)
+void OBJModel::loadOBJ(const char* path, float scale, float translate, float translate2)
 {
     std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
     std::vector< glm::vec3 > temp_vertices;
@@ -64,10 +64,10 @@ void OBJModel::loadOBJ(const char* path, float scale, float translate)
     for (unsigned int i = 0; i < vertexIndices.size(); i++) {
         unsigned int vertexIndex = vertexIndices[i];
         glm::vec3 vertex = temp_vertices[vertexIndex - 1];
-        vertex.z += translate+3;
-        vertex.x *= scale*0.7;
+        vertex.z += translate+translate2;
+        vertex.x *= scale* 0.7;
         vertex.y *= scale;
-        vertex.z *= scale*0.7;
+        vertex.z *= scale* 0.7;
         vertex_position.push_back(vec4(vertex,1));
     }
 
