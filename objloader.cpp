@@ -75,7 +75,7 @@ void OBJModel::loadOBJ(const char* path, float scale, float translate, float tra
         unsigned int normalIndex = normalIndices[i];
         glm::vec3 normal = temp_normals[normalIndex - 1];
         normal = glm::normalize(normal);
-        vertex_normal.push_back(normal);
+        vertex_normal.push_back(vec4(normal, 1));
     }
 
     for (unsigned int i = 0; i < uvIndices.size(); i++) {
@@ -108,14 +108,15 @@ void OBJModel::getPositions()
 
 void OBJModel::getNormals()
 {
-    this->normals = new float[vertex_normal.size() * 3];
+    this->normals = new float[vertex_normal.size() * 4];
     int pos = 0;
 
     for (int i = 0; i < vertex_normal.size(); i++) {
         this->normals[pos++] = vertex_normal.at(i)[0];
         this->normals[pos++] = vertex_normal.at(i)[1];
         this->normals[pos++] = vertex_normal.at(i)[2];
-        //this->normals[pos++] = result.at(i).normal[3];
+        this->normals[pos++] = vertex_normal.at(i)[3];
+        //->normals[pos++] = vertex_normal.at(i)[3];
     }
 }
 

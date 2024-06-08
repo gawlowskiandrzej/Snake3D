@@ -66,7 +66,7 @@ void Model::sendToShader(ShaderProgram* sp)
     // Send object to GPU
     glVertexAttribPointer(sp->a("vertex"),4, GL_FLOAT, false, 0, this->getPosition());
     glVertexAttribPointer(sp->a("texCoord"), 2, GL_FLOAT, false, 0, this->getTexCoords());
-    //glVertexAttribPointer(sp->a("normal"), 4, GL_FLOAT, false, 0, this->get);
+    glVertexAttribPointer(sp->a("normal"), 4, GL_FLOAT, false, 0, this->getNormals());
 }
 
 void Model::activeTexture(ShaderProgram* sp)
@@ -79,6 +79,8 @@ void Model::activeTexture(ShaderProgram* sp)
 float* Model::getPosition() { return (this->vertexPosition ? this->vertexPosition : this->objModel.verticies); }
 
 float* Model::getTexCoords() { return (this->vertexTexCoord ? this->vertexTexCoord : this->objModel.textCoord); }
+
+float* Model::getNormals() { return (this->vertexNormal ? this->vertexNormal : this->objModel.normals); }
 
 int Model::getCount() { return (this->vertexCount != 0 ? this->vertexCount : this->objModel.vertex_position.size()); }
 

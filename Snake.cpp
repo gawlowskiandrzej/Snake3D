@@ -18,10 +18,10 @@ bool Snake::checkCollision(Model* apple)
             printf("You collected apple! \n");
             printf("Your score: %d\n", this->length - (this->baseLength+2));
             // Generate random coords
-            appleMat[3][0] = (rand() % 6) - 2.8f;
-            appleMat[3][1] = (rand() % 6) - 2.8f;
+            appleMat[3][0] = (rand() % 5) - 2.3f;
+            appleMat[3][1] = (rand() % 5) - 2.3f;
 
-            this->angle < 0 ? this->angle++ : this->angle--;
+            this->angle < 0 ? this->angle+=0.3 : this->angle-=0.3;
 
             apple->setModelMatrix(appleMat);
         }
@@ -91,6 +91,7 @@ int Snake::getLength() { return this->length; }
 
 void Snake::renderSnakeBody(ShaderProgram* sp)
 {
+
     for (Model* snakeBody : this->snakeFragments)
     {
         snakeBody->sendToShader(sp);

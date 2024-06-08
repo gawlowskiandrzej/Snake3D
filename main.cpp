@@ -26,32 +26,32 @@ int main(void)
 	Game* game = new Game();
 
 	Model* apple = new Model("./objFiles/apple.obj", "./textures/apple.png");
-	
-	//apple->rotate(-90, vec3(1, 0, 0));
+	//
+	////apple->rotate(-90, vec3(1, 0, 0));
 	apple->translate(vec3(1.5, 0, -1.3));
 	apple->scale(vec3(5, 5, 5));
 	game->apple = apple;
 	game->addModel(apple);
 
-	Model* floor = new Model(myFloorVertices, myFloorTexCoords, nullptr,myFloorVertexCount);
+	Model* floor = new Model(myFloorVertices, myFloorTexCoords, myFloorNormals,myFloorVertexCount);
 
 	floor->readTextureFromPng("./textures/grass2.png");
 	floor->scale(vec3(3.3f, 3.3f, 1.0f));
 
-	Model* snakeHead = new Model("./objFiles/Sun.obj", "./textures/snakeHead.png", 0.08, 3);
+	Model* snakeHead = new Model("./objFiles/Sun.obj", "./textures/skinn.png", 0.08, 3);
 
 	snakeHead->translate(vec3(0.4, 0.4, -1.3));
 	snakeHead->rotate(90, vec3(1, 0, 0));
 	snakeHead->scale(vec3(1.2, 1.2, 1.2));
 
-	Model* snakeBodyFrag = new Model("./objFiles/snakeBody.obj", "./textures/snakeBody.png", 0.07, -4, 3);
+	Model* snakeBodyFrag = new Model("./objFiles/snakeBody.obj", "./textures/snakeSkin.png", 0.07, -4, 3);
 
 	snakeBodyFrag->translate(vec3(0.4, 0.51, -1.3));
 	snakeBodyFrag->scale(vec3(1.2, 1.2, 1.2));
 
-	Model* fence = new Model(myWallVertices, myWallTexCoords, nullptr, myWallVertexCount);
+	Model* fence = new Model(myWallVertices, myWallTexCoords, myWallNormals, myWallVertexCount);
 
-	fence->translate(vec3(0, 0, -1.3));
+	fence->translate(vec3(0, 0, -1.9));
 	fence->scale(vec3(3.3, 3.3, 1));
 	fence->readTextureFromPng("./textures/fence.png");
 	
@@ -66,8 +66,8 @@ int main(void)
 	printf("Resources loaded... starting app loop.");
 
 	mat4 appleMat = apple->getModelMatrix();
-	appleMat[3][0] = (rand() % 6) - 2.8f;
-	appleMat[3][1] = (rand() % 6) - 2.8f;
+	appleMat[3][0] = (rand() % 5) - 2.3f;
+	appleMat[3][1] = (rand() % 5) - 2.3f;
 	apple->setModelMatrix(appleMat);
 
 	while (!glfwWindowShouldClose(game->getWindow()))

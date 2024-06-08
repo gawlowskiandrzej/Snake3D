@@ -68,14 +68,14 @@ void Game::setAttribArrays(ShaderProgram* sp)
 {
 	glEnableVertexAttribArray(sp->a("vertex"));
 	glEnableVertexAttribArray(sp->a("texCoord"));
-	//glEnableVertexAttribArray(sp->a("normal"));
+	glEnableVertexAttribArray(sp->a("normal"));
 }
 
 void Game::disableAttribArrays(ShaderProgram* sp)
 {
 	glDisableVertexAttribArray(sp->a("vertex"));
 	glDisableVertexAttribArray(sp->a("texCoord"));
-	//glDisableVertexAttribArray(sp->a("normal"));
+	glDisableVertexAttribArray(sp->a("normal"));
 }
 
 void Game::setPerspective(ShaderProgram* sp)
@@ -155,7 +155,6 @@ void Game::drawScene()
 void Game::updateInput()
 {
 	glfwPollEvents();
-
 	if (glfwGetKey(this->window, GLFW_KEY_A) == GLFW_PRESS) { if (this->snake->angle > 0) { this->snake->angle *= -1; }  this->snake->move(this->snake->getLength() - 1, this->apple); }
 	else if (glfwGetKey(this->window, GLFW_KEY_D) == GLFW_PRESS) { if (this->snake->angle < 0) { this->snake->angle *= -1; } this->snake->move(this->snake->getLength() - 1, this->apple); }
 	else if (glfwGetKey(this->window, GLFW_KEY_ESCAPE) == GLFW_PRESS) glfwSetWindowShouldClose(this->window, GL_TRUE);

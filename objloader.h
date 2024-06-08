@@ -20,7 +20,7 @@ public:
     float* normals;
 
     std::vector<glm::vec4> vertex_position;
-    std::vector<glm::vec3> vertex_normal;
+    std::vector<glm::vec4> vertex_normal;
     std::vector<glm::vec2> vertex_texcoord;
 
     std::vector<Vertex> result;

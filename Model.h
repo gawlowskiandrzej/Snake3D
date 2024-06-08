@@ -35,6 +35,7 @@ class Model {
 
 		float* getPosition();
 		float* getTexCoords();
+		float* getNormals();
 		int getCount();
 };
 
