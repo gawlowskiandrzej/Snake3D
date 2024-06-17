@@ -6,7 +6,7 @@
 <b>Snake 3D is implementation of popular 2D game snake.</b> Snake 3D was created for the purpose of Graphic and Visualisation Poznań University of Technology, learning basics of OpenGl. Free camera was implemented and you can moving around and changing view and position.
 
 ## Presentation
-![animated of snake](./Snake3D.png)
+![Snake](./Snake3D.png)
 
 ## Rules of the game
 
