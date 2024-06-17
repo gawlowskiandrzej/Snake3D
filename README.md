@@ -16,7 +16,7 @@ Snake is very basic game, you need to feed snake by catching apples and avoiding
 ESC - exit application
 <h4>Snake</h4>
 A - rotate left <br/>
-B - rotate right
+D - rotate right
 <h4>Camera</h4>
 &#8593; - moving forward <br/>
 &#8595; - moving backward <br/>
